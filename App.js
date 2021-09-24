@@ -1,22 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import DishList from './components/Dishlist/DishList';
-import OrderBasket from './components/OrderBasket/OrderBasket';
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, View } from 'react-native';
+import { createStore, applyMiddleware, combineReducers } from "redux";
+import { Provider } from "react-redux";
+import thunk from 'redux-thunk';
+import reducerOrder from './store/reducers/reducerOrder';
+import reducerPizzaList from './store/reducers/reducerPizzaList';
+import Index from './components/Main/Index';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <StatusBar style="auto" />
-      <View style={styles.title}>
-        <Text style={styles.text}>Pizzeria</Text>
+    <Provider store={store}>
+      <View style={styles.container}>
+        <StatusBar style="auto" />
+        <Index />
       </View>
-      <Text>Choice your favorite pizza:</Text>
-      <DishList />
-      <OrderBasket />
-    </View>
+    </Provider>
   );
 }
+
+const rootReducer = combineReducers({
+  pizzaList: reducerPizzaList,
+  orderInfo: reducerOrder,
+});
+
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 const styles = StyleSheet.create({
   container: {
@@ -25,16 +33,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  title: {
-    textAlign: 'center',
-    marginVertical: 20,
-    backgroundColor: '#497ebf',
-    width: '100%',
-    padding: 10,
-  },
-  text: {
-    color: '#fff',
-    textAlign: 'center',
-    fontSize: 18,
-  }
 });

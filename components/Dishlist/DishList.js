@@ -1,19 +1,19 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 
-const DishList = () => {
+const DishList = ({img, name, price , add}) => {
     return (
         <View style={styles.cards}>
-            <View style={styles.card}>
+            <View style={styles.card} onPress={add}>
                 <Image
-                    style={styles.img}
-                    source={{ uri: 'https://static.1000.menu/img/content-v2/85/ff/6190/pitstsa-pepperoni-_1612599986_22_max.jpg' }}
+                    style={styles.image}
+                    source={{ uri: {img} }}
                 />
                 <View style={styles.title}>
-                    <Text>Pepperoni</Text>
+                    <Text>{name}</Text>
                 </View>
-                <View style={styles.price}>
-                    <Text>80 KGS</Text>
+                <View style={styles.prc}>
+                    <Text>{price} KGS</Text>
                 </View>
             </View>
         </View>
@@ -26,14 +26,13 @@ const styles = StyleSheet.create({
     },
     card: {
         borderWidth: 1,
-        // borderRadius: 20,
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
         minWidth: '90%',
     },
-    img: {
+    image: {
         width: 150,
         height: 150,
     },
@@ -41,7 +40,7 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         fontSize: 20,
     },
-    price: {
+    prc: {
         marginRight: 10,
     },
 });
