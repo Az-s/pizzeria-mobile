@@ -1,21 +1,23 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, Pressable } from 'react-native';
 
-const DishList = ({img, name, price , add}) => {
+const DishList = ({ img, name, price, add }) => {
     return (
         <View style={styles.cards}>
-            <View style={styles.card} onPress={add}>
-                <Image
-                    style={styles.image}
-                    source={{ uri: {img} }}
-                />
-                <View style={styles.title}>
-                    <Text>{name}</Text>
+            <Pressable>
+                <View style={styles.card} onPress={add}>
+                    <Image
+                        style={styles.image}
+                        source={{ uri: img }}
+                    />
+                    <View style={styles.title}>
+                        <Text>{name}</Text>
+                    </View>
+                    <View style={styles.prc}>
+                        <Text>{price} KGS</Text>
+                    </View>
                 </View>
-                <View style={styles.prc}>
-                    <Text>{price} KGS</Text>
-                </View>
-            </View>
+            </ Pressable>
         </View>
     )
 }
@@ -23,6 +25,7 @@ const DishList = ({img, name, price , add}) => {
 const styles = StyleSheet.create({
     cards: {
         marginVertical: 15,
+        minWidth: '90%',
     },
     card: {
         borderWidth: 1,
@@ -30,7 +33,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        minWidth: '90%',
     },
     image: {
         width: 150,

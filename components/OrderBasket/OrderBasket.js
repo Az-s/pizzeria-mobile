@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from "react";
 import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
+import axiosApi from "../../axiosApi";
 
 const OrderBasket = ({ dishes, orderCart, remove }) => {
     const [modalVisible, setModalVisible] = useState(false);
@@ -31,7 +32,7 @@ const OrderBasket = ({ dishes, orderCart, remove }) => {
     const createOrder = async e => {
         e.preventDefault();
         try {
-            await axios.post('https://az-sa-bd3f9-default-rtdb.firebaseio.com/orders.json', {
+            await axiosApi.post('orders.json', {
                 dish,
             });
         } catch (error) {

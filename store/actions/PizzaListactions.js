@@ -1,4 +1,4 @@
-import axios from "axios";
+import axiosApi from '../../axiosApi';
 
 export const FETCH_MENU_REQUEST = 'FETCH_MENU_REQUEST';
 export const FETCH_MENU_SUCCESS = 'FETCH_MENU_SUCCESS';
@@ -14,7 +14,7 @@ export const fetchDishMenu = () => {
     return async (dispatch , getState) => {
         try {   
             dispatch(fetchMenuRequest());
-            const response = await axios.get('https://az-sa-bd3f9-default-rtdb.firebaseio.com/menuList.json');
+            const response = await axiosApi.get('pizzaTypes.json');
 
             const dishes = Object.keys(response.data).map(id => ({
                 ...response.data[id],

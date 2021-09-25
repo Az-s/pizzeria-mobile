@@ -10,7 +10,7 @@ import { fetchDishMenu } from '../../store/actions/PizzaListactions';
 const Index = () => {
   const dispatch = useDispatch();
 
-  const dishes = useSelector(state => state.pizzaList.dishes);
+  const allDishes = useSelector(state => state.pizzaList.dishes);
   const orderCart = useSelector(state => state.orderInfo.items);
 
   useEffect(() => {
@@ -33,10 +33,10 @@ const Index = () => {
         <Text style={styles.text}>Pizzeria</Text>
       </View>
       <Text>Choice your favorite pizza:</Text>
-      {dishes.map(dish => (
+      {allDishes.map(dish => (
         <DishList
           key={dish.id}
-          name={dish.dish}
+          name={dish.pizza}
           price={dish.price}
           img={dish.img}
           add={() => onClickAdd(dish.id)}
@@ -44,7 +44,7 @@ const Index = () => {
       ))}
       <OrderBasket
         orderCart={orderCart}
-        dishes={dishes}
+        dishes={allDishes}
         remove={onClickRemove}
       />
     </View>

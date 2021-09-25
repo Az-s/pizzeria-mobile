@@ -1,6 +1,6 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, ScrollView } from 'react-native';
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import thunk from 'redux-thunk';
@@ -12,8 +12,10 @@ export default function App() {
   return (
     <Provider store={store}>
       <View style={styles.container}>
-        <StatusBar style="auto" />
-        <Index />
+        <ScrollView style={styles.scrollView}>
+          <StatusBar style="auto" />
+          <Index />
+        </ScrollView>
       </View>
     </Provider>
   );
